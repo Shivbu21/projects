@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SocietyOS — Secretary Dashboard</title>
+<link rel="stylesheet" href="theme.css">
+</head>
+<body>
+<header class="topbar">
+  <h1>SocietyOS</h1>
+  <p id="societyName">Secretary Dashboard</p>
+</header>
+
+<!-- passcode gate -->
+<div class="wrap lock" id="lock">
+  <div class="card">
+    <h2>Secretary login</h2>
+    <label for="passInput">Passcode</label>
+    <input id="passInput" type="password" inputmode="numeric" placeholder="••••" autocomplete="off">
+    <button class="btn block" id="btnUnlock">Unlock</button>
+    <p class="err" id="lockErr"></p>
+    <p style="font-size:.8rem;color:var(--muted);margin-top:10px">Default passcode: 1234</p>
+  </div>
+</div>
+
+<!-- dashboard -->
+<div class="wrap" id="dash" hidden>
+  <div class="stats">
+    <div class="stat"><b id="stFlats">0</b><span>FLATS</span></div>
+    <div class="stat"><b id="stColl">0%</b><span>COLLECTED THIS MONTH</span></div>
+    <div class="stat"><b id="stOpen">0</b><span>OPEN COMPLAINTS</span></div>
+  </div>
+
+  <div class="tabs" id="tabs">
+    <button data-tab="flats" class="on">Flats</button>
+    <button data-tab="bills">Bills</button>
+    <button data-tab="complaints">Complaints</button>
+    <button data-tab="notices">Notices</button>
+    <button data-tab="settings">Settings</button>
+  </div>
+
+  <section class="card" id="tab-flats">
+    <h2>Add flat</h2>
+    <div class="row">
+      <div><label for="fTower">Tower</label><input id="fTower" placeholder="A"></div>
+      <div><label for="fNo">Flat no.</label><input id="fNo" placeholder="1203"></div>
+    </div>
+    <label for="fOwner">Owner / resident name</label>
+    <input id="fOwner" placeholder="Ramesh Gupta">
+    <label for="fPhone">Phone (WhatsApp)</label>
+    <input id="fPhone" inputmode="tel" placeholder="98XXXXXXXX">
+    <button class="btn block" id="btnAddFlat">Add flat</button>
+    <h3>All flats</h3>
+    <ul class="list" id="flatList"></ul>
+    <p class="empty" id="flatEmpty" hidden>No flats added yet.</p>
+  </section>
+
+  <section class="card" id="tab-bills" hidden>
+    <h2>Maintenance bills</h2>
+    <label for="billMonth">Month</label>
+    <input id="billMonth" type="month">
+    <button class="btn block" id="btnGen">Generate bills for this month</button>
+    <p style="font-size:.8rem;color:var(--muted);margin-top:6px">One bill per flat. Re-generating the same month never duplicates.</p>
+    <h3>Bills</h3>
+    <ul class="list" id="billList"></ul>
+    <p class="empty" id="billEmpty" hidden>No bills for this month yet.</p>
+  </section>
+
+  <section class="card" id="tab-complaints" hidden>
+    <h2>Complaints</h2>
+    <ul class="list" id="cmpList"></ul>
+    <p class="empty" id="cmpEmpty" hidden>No complaints yet.</p>
+  </section>
+
+  <section class="card" id="tab-notices" hidden>
+    <h2>Post a notice</h2>
+    <label for="nTitle">Title</label>
+    <input id="nTitle" placeholder="Water shutdown on Sunday">
+    <label for="nBody">Details</label>
+    <textarea id="nBody" placeholder="Timings, reason…"></textarea>
+    <button class="btn block" id="btnNotice">Post notice</button>
+    <h3>Past notices</h3>
+    <ul class="list" id="noticeList"></ul>
+    <p class="empty" id="noticeEmpty" hidden>No notices yet.</p>
+  </section>
+
+  <section class="card" id="tab-settings" hidden>
+    <h2>Settings</h2>
+    <label for="sName">Society name</label>
+    <input id="sName" placeholder="Greenview Residency">
+    <label for="sUpi">Society UPI ID (for payments)</label>
+    <input id="sUpi" placeholder="greenview@upi">
+    <label for="sAmt">Default monthly maintenance (₹)</label>
+    <input id="sAmt" type="number" min="0" placeholder="2500">
+    <button class="btn block" id="btnSaveSettings">Save settings</button>
+    <h3>Change passcode</h3>
+    <label for="pCur">Current passcode</label>
+    <input id="pCur" type="password" inputmode="numeric">
+    <label for="pNew">New passcode (min 4 chars)</label>
+    <input id="pNew" type="password" inputmode="numeric">
+    <label for="pConf">Confirm new passcode</label>
+    <input id="pConf" type="password" inputmode="numeric">
+    <button class="btn block" id="btnChangePass">Change passcode</button>
+    <p class="err" id="passErr"></p>
+  </section>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InstaReply — simulator</title>
+<link rel="stylesheet" href="theme.css">
+</head>
+<body>
+<div class="topbar">
+  <div class="inner">
+    <span class="logo">💬</span>
+    <div>
+      <h1 id="bizName">InstaReply</h1>
+      <p>DM auto-reply simulator</p>
+    </div>
+    <span class="spacer"></span>
+    <a href="admin.html">Dashboard</a>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="card">
+    <h2>Try it as a customer</h2>
+    <p class="hint" style="margin-top:0">Type below — the engine replies exactly as your Instagram automation would.</p>
+    <div class="chat" id="chat" style="margin-top:12px"></div>
+    <div class="chatbar">
+      <input id="msgInput" type="text" placeholder="e.g. cake price?" autocomplete="off" maxlength="300">
+      <button class="btn" id="sendBtn">Send</button>
+    </div>
+  </div>
+
+  <details class="catalog card">
+    <summary>📦 What this shop sells</summary>
+    <div id="catalogList" style="margin-top:8px"></div>
+  </details>
+
+  <div class="card">
+    <h2>How it goes live</h2>
+    <p class="hint">This simulator runs the real reply engine. To auto-reply on your actual Instagram DMs, connect the Meta webhook — the 5-minute guide is in <b>HOOK.md</b>.</p>
+  </div>
+
+  <footer>InstaReply · replies stay on this device until you connect the webhook</footer>
+</div>
+<div class="toast" id="toast"></div>
+<script src="engine.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

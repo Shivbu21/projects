@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QR Pro — dynamic QR codes with scan analytics</title>
+<link rel="stylesheet" href="theme.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <a class="brand" href="index.html"><span class="brandmark">Q</span><b>QR Pro</b></a>
+    <nav><a href="admin.html">Dashboard →</a></nav>
+  </div>
+
+  <div class="hero">
+    <h1>Printed QRs are <span>dead links</span>.<br>Ours stay alive.</h1>
+    <p>Create QR codes you can <b>retarget any time</b> — change the destination after printing — and see exactly how many people scan them.</p>
+    <a class="btn" href="admin.html">Open dashboard</a>
+  </div>
+
+  <div class="grid" id="howGrid">
+    <div class="card"><h3>1. Create</h3><p class="muted small">Name your QR, paste the destination link. We generate a print-ready QR image.</p></div>
+    <div class="card"><h3>2. Print &amp; stick</h3><p class="muted small">Menu cards, shop windows, flyers — the QR points at a smart redirect link.</p></div>
+    <div class="card"><h3>3. Retarget anytime</h3><p class="muted small">Menu changed? Offer expired? Update the destination — every printed QR follows instantly.</p></div>
+    <div class="card"><h3>4. Count scans</h3><p class="muted small">Every scan is logged with a timestamp. See which QRs pull footfall.</p></div>
+  </div>
+
+  <h2 class="section-title">My QR codes</h2>
+  <div class="grid" id="qrGrid"></div>
+  <div class="empty" id="qrEmpty" hidden>
+    <div class="big">📷</div>
+    <p>No QR codes yet. <a href="admin.html">Create your first one</a> in the dashboard.</p>
+  </div>
+
+  <footer>QR Pro · dynamic QR codes · your data stays on your device</footer>
+</div>
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>

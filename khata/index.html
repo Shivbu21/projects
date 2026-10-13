@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KhataQ — My Ledger</title>
+<link rel="stylesheet" href="theme.css">
+</head>
+<body>
+<header class="top">
+  <h1 id="shopTitle">KhataQ</h1>
+  <p>Your udhaar ledger — check what you owe, pay in one tap.</p>
+</header>
+<main>
+  <div class="card" id="lookupCard">
+    <h2>Find my ledger</h2>
+    <div class="field">
+      <label for="phone">Mobile number</label>
+      <input id="phone" inputmode="numeric" maxlength="13" placeholder="10-digit mobile number" autocomplete="tel">
+    </div>
+    <button class="btn block" id="btnLookup">View my ledger</button>
+    <div class="err" id="lookupErr" hidden></div>
+  </div>
+
+  <div class="card" id="ledgerCard" hidden>
+    <div class="muted" id="custLine"></div>
+    <div style="margin:10px 0 4px" class="muted">Total you owe</div>
+    <div class="balance-big owed" id="totalOwed">₹0</div>
+    <div style="margin:16px 0 8px;font-weight:700">History</div>
+    <div id="entries"></div>
+    <a class="btn block" id="btnPay" href="#" style="margin-top:14px">Pay via UPI</a>
+    <button class="btn ghost block" id="btnBack" style="margin-top:10px">Look up another number</button>
+  </div>
+
+  <div class="privacy">🔒 Private by design — this ledger is only visible with your mobile number. The shopkeeper cannot see anyone else's page from here.</div>
+</main>
+<footer>KhataQ · your shop's digital udhaar notebook</footer>
+<div id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>

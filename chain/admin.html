@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChainQ — owner dashboard</title>
+<link rel="stylesheet" href="theme.css">
+</head>
+<body>
+<div id="lock">
+  <div class="lockbox">
+    <h2>🔐 ChainQ</h2>
+    <p>Owner dashboard. Enter your passcode.</p>
+    <div class="lockerr" id="lockErr"></div>
+    <input id="lockInput" type="password" inputmode="numeric" maxlength="32" autocomplete="off" placeholder="••••">
+    <button class="btn" id="lockBtn">Unlock</button>
+    <p class="muted" style="margin-top:10px">Default passcode: 1234</p>
+  </div>
+</div>
+
+<div class="topbar">
+  <div class="brand"><span class="q">C</span> ChainQ</div>
+  <button id="btnPass">Change passcode</button>
+</div>
+<div class="tabs">
+  <button id="tabDash" class="on">Dashboard</button>
+  <button id="tabEntry">Daily entry</button>
+  <button id="tabOutlets">Outlets</button>
+</div>
+
+<div class="wrap">
+  <!-- DASHBOARD -->
+  <section id="secDash">
+    <div class="ranges">
+      <button data-range="today" class="on">Today</button>
+      <button data-range="week">This week</button>
+      <button data-range="month">This month</button>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="l">Revenue</div><div class="v green" id="stRev">₹0</div></div>
+      <div class="stat"><div class="l">Footfall</div><div class="v" id="stFoot">0</div></div>
+      <div class="stat"><div class="l">Expenses</div><div class="v" id="stExp">₹0</div></div>
+      <div class="stat"><div class="l">Net</div><div class="v green" id="stNet">₹0</div></div>
+    </div>
+    <div class="card">
+      <h3>Revenue by outlet <span class="muted" id="chartLbl"></span></h3>
+      <div class="bars" id="bars"></div>
+    </div>
+    <div class="card">
+      <h3>Outlet ranking</h3>
+      <div id="ranking"></div>
+    </div>
+    <div class="card">
+      <div class="hrow">
+        <h3 style="margin:0">Outlet detail</h3>
+        <select class="inline" id="detailSel"></select>
+      </div>
+      <div id="detailTbl"></div>
+    </div>
+    <div class="card">
+      <h3>Export</h3>
+      <div class="field">
+        <label>Month</label>
+        <input type="month" id="expMonth">
+      </div>
+      <button class="btn ghost" id="btnCsv">Download CSV</button>
+    </div>
+  </section>
+
+  <!-- ENTRY -->
+  <section id="secEntry" hidden>
+    <div class="card">
+      <h3>Daily numbers — 2 minutes a night</h3>
+      <div class="field">
+        <label>Date</label>
+        <input type="date" id="entryDate">
+      </div>
+      <div id="entryRows"></div>
+      <button class="btn" id="btnSaveEntry" style="margin-top:12px">Save today's numbers</button>
+      <p class="muted" id="entryMsg" style="margin-top:8px"></p>
+    </div>
+  </section>
+
+  <!-- OUTLETS -->
+  <section id="secOutlets" hidden>
+    <div class="card">
+      <h3>Add outlet</h3>
+      <div class="field"><label>Name</label><input id="oName" placeholder="e.g. Sharma Salon — Sector 62"></div>
+      <div class="field"><label>Type</label>
+        <select id="oType">
+          <option>Salon</option><option>Clinic</option><option>Kirana</option><option>Restaurant</option>
+          <option>Laundry</option><option>Pharmacy</option><option>Gym</option><option>Other</option>
+        </select>
+      </div>
+      <div class="field"><label>Town</label><input id="oTown" placeholder="e.g. Noida"></div>
+      <div class="field"><label>ScanQ app URL (optional)</label><input id="oUrl" placeholder="https://…"></div>
+      <button class="btn" id="btnAddOutlet">Add outlet</button>
+    </div>
+    <div class="card">
+      <h3>Your outlets</h3>
+      <div id="outletList"></div>
+    </div>
+  </section>
+</div>
+
+<div class="mveil" id="passVeil" hidden>
+  <div class="modal">
+    <h3>Change passcode</h3>
+    <div class="field"><label>Current passcode</label><input type="password" id="pcCur" autocomplete="off"></div>
+    <div class="field"><label>New passcode (min 4 chars)</label><input type="password" id="pcNew" autocomplete="off"></div>
+    <div class="field"><label>Confirm new passcode</label><input type="password" id="pcNew2" autocomplete="off"></div>
+    <div class="lockerr" id="pcErr"></div>
+    <div class="rowbtns">
+      <button class="btn" id="pcSave">Save</button>
+      <button class="btn ghost" id="pcCancel">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script src="admin.js"></script>
+</body>
+</html>

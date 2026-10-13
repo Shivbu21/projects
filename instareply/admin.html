@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InstaReply — dashboard</title>
+<link rel="stylesheet" href="theme.css">
+</head>
+<body>
+<div class="topbar">
+  <div class="inner">
+    <span class="logo">💬</span>
+    <div>
+      <h1>InstaReply</h1>
+      <p>Owner dashboard</p>
+    </div>
+    <span class="spacer"></span>
+    <a href="index.html">Simulator</a>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="lock card" id="lock">
+    <div class="big">🔒</div>
+    <h2>Dashboard locked</h2>
+    <p class="hint">Enter your passcode (default 1234).</p>
+    <input id="passInput" type="password" inputmode="numeric" maxlength="12" autocomplete="off">
+    <div><button class="btn" id="unlockBtn">Unlock</button></div>
+    <div class="err" id="passErr"></div>
+  </div>
+
+  <div id="dash" hidden>
+    <div class="tabs">
+      <button class="tab on" data-tab="catalog">📦 Catalog</button>
+      <button class="tab" data-tab="replies">✏️ Replies</button>
+      <button class="tab" data-tab="chats">💭 Chats</button>
+      <button class="tab" data-tab="settings">⚙️ Settings</button>
+    </div>
+
+    <div class="tabpanel" data-panel="catalog">
+      <div class="card">
+        <h2>Products &amp; services</h2>
+        <div id="prodList"></div>
+        <hr class="divider">
+        <h3 id="pFormTitle">Add product</h3>
+        <input type="hidden" id="pId">
+        <label>Name</label>
+        <input id="pName" type="text" placeholder="e.g. Chocolate Cake" maxlength="60">
+        <label>Price (₹)</label>
+        <input id="pPrice" type="text" inputmode="numeric" placeholder="e.g. 450" maxlength="12">
+        <label>Keywords (comma-separated)</label>
+        <input id="pKw" type="text" placeholder="e.g. cake, chocolate, birthday">
+        <div class="btnrow">
+          <button class="btn" id="pAddBtn">Add product</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="tabpanel" data-panel="replies" hidden>
+      <div class="card">
+        <h2>Reply templates</h2>
+        <p class="hint" style="margin-top:0">The engine matches keywords, then fills the template. Edit the wording to sound like you.</p>
+        <div id="intentList"></div>
+        <div class="btnrow">
+          <button class="btn" id="tSaveBtn">Save replies</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="tabpanel" data-panel="chats" hidden>
+      <div class="card">
+        <h2>Today</h2>
+        <div class="stats">
+          <div class="stat"><b id="stMsgs">0</b><span>messages</span></div>
+          <div class="stat"><b id="stResolved">—</b><span>auto-resolved</span></div>
+          <div class="stat"><b id="stHandoff">0</b><span>handoffs</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Conversation log</h2>
+        <div id="chatLog"></div>
+        <div class="btnrow">
+          <button class="btn ghost small" id="clearLogBtn">Clear log</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="tabpanel" data-panel="settings" hidden>
+      <div class="card">
+        <h2>Business</h2>
+        <label>Business name</label>
+        <input id="sBiz" type="text" maxlength="60">
+        <label>WhatsApp number (digits only, with country code)</label>
+        <input id="sWa" type="tel" placeholder="919876543210" maxlength="15">
+        <label>Address</label>
+        <input id="sAddr" type="text" maxlength="120">
+        <label>Hours</label>
+        <input id="sHours" type="text" maxlength="80">
+        <div class="btnrow">
+          <button class="btn" id="sSaveBtn">Save settings</button>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Change passcode</h2>
+        <label>Current passcode</label>
+        <input id="cCur" type="password" maxlength="12" autocomplete="off">
+        <label>New passcode (4+ characters)</label>
+        <input id="cNew" type="password" maxlength="12" autocomplete="off">
+        <label>Confirm new passcode</label>
+        <input id="cCf" type="password" maxlength="12" autocomplete="off">
+        <div class="err" id="cErr"></div>
+        <div class="btnrow">
+          <button class="btn" id="cSaveBtn">Change passcode</button>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Go live</h2>
+        <p class="hint">Connect this engine to your real Instagram DMs with the webhook guide in <b>HOOK.md</b>.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>InstaReply · your catalog and chats stay on this device</footer>
+</div>
+<div class="toast" id="toast"></div>
+<script src="admin.js"></script>
+</body>
+</html>

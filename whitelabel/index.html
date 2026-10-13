@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>White-label ScanQ — branded queue app in 2 minutes</title>
+<link rel="stylesheet" href="theme.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="mark">W</div>
+  <div><h1>White-label ScanQ</h1><p>Your shop's own branded queue app — no coding</p></div>
+</header>
+
+<div class="layout">
+  <main>
+    <div class="steps" id="stepsBar">
+      <div class="step active" data-n="1" data-go="1"><span class="bar"></span>Brand</div>
+      <div class="step" data-n="2" data-go="2"><span class="bar"></span>Type</div>
+      <div class="step" data-n="3" data-go="3"><span class="bar"></span>Preview</div>
+      <div class="step" data-n="4" data-go="4"><span class="bar"></span>Download</div>
+    </div>
+
+    <!-- STEP 1 -->
+    <section class="panel" data-step="1">
+      <h2>Brand it</h2>
+      <p class="lede">Your name, colors and logo — this is what customers see.</p>
+      <div class="field">
+        <label for="fName">Business name *</label>
+        <input type="text" id="fName" placeholder="Sharma Salon" maxlength="40">
+      </div>
+      <div class="field">
+        <label for="fTagline">Tagline</label>
+        <input type="text" id="fTagline" placeholder="Look sharp, feel sharper" maxlength="60">
+      </div>
+      <div class="field">
+        <label>Primary color</label>
+        <div class="swatches" id="swatches"></div>
+        <div class="hint">Pick a swatch or choose your own shade.</div>
+      </div>
+      <div class="field">
+        <label>Logo</label>
+        <div class="logo-row">
+          <div class="logo-prev" id="logoPrev">No logo</div>
+          <div>
+            <input type="file" id="fLogo" accept="image/*" hidden>
+            <button class="btn ghost" id="btnLogo" type="button">Upload logo</button>
+            <button class="btn ghost" id="btnLogoRm" type="button" hidden>Remove</button>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label for="fPhone">Owner phone (WhatsApp)</label>
+        <input type="tel" id="fPhone" placeholder="9876543210" maxlength="13">
+      </div>
+      <div class="field">
+        <label for="fWelcome">Welcome message</label>
+        <textarea id="fWelcome" maxlength="140" placeholder="Welcome! Take your token below and we'll call you."></textarea>
+      </div>
+      <div class="navrow">
+        <span></span>
+        <button class="btn primary" id="next1" type="button">Continue →</button>
+      </div>
+    </section>
+
+    <!-- STEP 2 -->
+    <section class="panel" data-step="2" hidden>
+      <h2>Pick the app type</h2>
+      <p class="lede">What should customers do in your app?</p>
+      <div class="type-cards" id="typeCards">
+        <div class="type-card sel" data-type="queue" role="button" tabindex="0">
+          <div class="t-ic">#</div><h3>Token Queue</h3>
+          <p>Customers take a numbered token. You call them in order.</p>
+        </div>
+        <div class="type-card" data-type="slots" role="button" tabindex="0">
+          <div class="t-ic">◷</div><h3>Booking Slots</h3>
+          <p>Customers pick a time slot. You confirm each booking.</p>
+        </div>
+        <div class="type-card" data-type="orders" role="button" tabindex="0">
+          <div class="t-ic">≡</div><h3>Order List</h3>
+          <p>Customers place orders with items. You mark them ready.</p>
+        </div>
+      </div>
+      <div class="navrow">
+        <button class="btn ghost" data-back="1" type="button">← Back</button>
+        <button class="btn primary" data-next="3" type="button">Continue →</button>
+      </div>
+    </section>
+
+    <!-- STEP 3 -->
+    <section class="panel" data-step="3" hidden>
+      <h2>Preview</h2>
+      <p class="lede">This is exactly what your customers will see and use. Try it — take a token, place an order. It really works.</p>
+      <p class="lede" style="margin-top:-12px">On wide screens the live preview sits on the right and updates as you type. Here it is full-size:</p>
+      <div class="phone" style="max-width:375px"><iframe id="bigPreview" title="App preview" src="preview.html"></iframe></div>
+      <div class="navrow">
+        <button class="btn ghost" data-back="2" type="button">← Back</button>
+        <button class="btn primary" data-next="4" type="button">Get my app →</button>
+      </div>
+    </section>
+
+    <!-- STEP 4 -->
+    <section class="panel" data-step="4" hidden>
+      <h2>Download your app</h2>
+      <p class="lede">One self-contained file. Host it anywhere, share the link, print its QR.</p>
+      <table class="summary" id="summaryTable"></table>
+      <div class="dl-box">
+        <h3>Your branded app file</h3>
+        <p>Customer view + owner dashboard (<code class="k">?admin=1</code>, passcode <code class="k">1234</code>). Works offline from the file, saves data on the device.</p>
+        <button class="btn primary big" id="btnDownload" type="button">Download my app</button>
+      </div>
+      <div class="dl-box">
+        <h3>Config JSON</h3>
+        <p>Your branding as data — re-import later or hand to a developer.</p>
+        <button class="btn ghost" id="btnCopyJson" type="button">Copy config JSON</button>
+        <span id="copyMsg" style="font-size:.85rem;color:var(--brand);margin-left:10px"></span>
+      </div>
+      <div class="navrow">
+        <button class="btn ghost" data-back="3" type="button">← Back</button>
+        <button class="btn ghost" id="btnRestart" type="button">Start over</button>
+      </div>
+    </section>
+  </main>
+
+  <aside class="preview-aside">
+    <div class="cap"><span class="live-dot"></span>Live preview</div>
+    <div class="phone"><iframe id="livePreview" title="Live app preview" src="preview.html"></iframe></div>
+  </aside>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

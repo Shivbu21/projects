@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SocietyOS — Resident Portal</title>
+<link rel="stylesheet" href="theme.css">
+</head>
+<body>
+<header class="topbar">
+  <h1>SocietyOS</h1>
+  <p id="societyName">Resident Portal</p>
+</header>
+
+<div class="wrap">
+  <!-- lookup -->
+  <div class="card" id="lookupCard">
+    <h2>Find your flat</h2>
+    <div class="row">
+      <div><label for="inTower">Tower</label><input id="inTower" placeholder="A" autocomplete="off"></div>
+      <div><label for="inFlat">Flat no.</label><input id="inFlat" placeholder="1203" autocomplete="off"></div>
+    </div>
+    <label for="inPhone">Or registered phone</label>
+    <input id="inPhone" inputmode="tel" placeholder="98XXXXXXXX" autocomplete="off">
+    <button class="btn block" id="btnFind">Find my flat</button>
+    <p class="err" id="lookupErr"></p>
+  </div>
+
+  <!-- resident home -->
+  <div id="home" hidden>
+    <div class="card">
+      <h2 id="flatTitle">Flat</h2>
+      <p class="sub" id="flatSub" style="font-size:.85rem;color:var(--muted)"></p>
+      <button class="btn ghost small" id="btnChange">Change flat</button>
+    </div>
+
+    <div class="card">
+      <h2>Maintenance bills</h2>
+      <ul class="list" id="billList"></ul>
+      <p class="empty" id="billEmpty" hidden>No bills yet.</p>
+    </div>
+
+    <div class="card">
+      <h2>Raise a complaint</h2>
+      <label for="cmpCat">Category</label>
+      <select id="cmpCat">
+        <option value="water">Water</option>
+        <option value="electricity">Electricity</option>
+        <option value="lift">Lift</option>
+        <option value="cleanliness">Cleanliness</option>
+        <option value="other">Other</option>
+      </select>
+      <label for="cmpDesc">Description</label>
+      <textarea id="cmpDesc" placeholder="Describe the issue…"></textarea>
+      <button class="btn block" id="btnComplaint">Submit complaint</button>
+    </div>
+
+    <div class="card">
+      <h2>My complaints</h2>
+      <ul class="list" id="cmpList"></ul>
+      <p class="empty" id="cmpEmpty" hidden>No complaints raised.</p>
+    </div>
+
+    <div class="card">
+      <h2>Notice board</h2>
+      <div id="noticeBoard"></div>
+      <p class="empty" id="noticeEmpty" hidden>No notices yet.</p>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TuitionOS — Parent View</title>
+<link rel="stylesheet" href="theme.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <h1 id="bizName">TuitionOS</h1>
+    <p>Check attendance, fees and test scores for your child.</p>
+  </div>
+
+  <div class="card" id="lookupCard">
+    <h3>Find your child</h3>
+    <div class="field">
+      <label>Mobile number (student or parent)</label>
+      <input id="phone" type="tel" inputmode="numeric" placeholder="10-digit mobile number" maxlength="13">
+    </div>
+    <button class="btn block" id="btnFind">View report</button>
+    <div class="err" id="lookupErr"></div>
+  </div>
+
+  <div id="report" hidden></div>
+</div>
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>

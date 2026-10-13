@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QR Pro — dashboard</title>
+<link rel="stylesheet" href="theme.css">
+</head>
+<body>
+<div class="wrap">
+
+  <!-- passcode lock -->
+  <div class="lock" id="lock">
+    <div class="brandmark">Q</div>
+    <h2>QR Pro dashboard</h2>
+    <p class="muted small" style="margin:8px 0 18px">Enter your passcode to manage QR codes.</p>
+    <div class="field">
+      <input type="password" id="passInput" inputmode="numeric" placeholder="Passcode" autocomplete="off">
+      <div class="err" id="passErr"></div>
+    </div>
+    <button class="btn" id="unlockBtn" style="width:100%">Unlock</button>
+    <p class="muted small" style="margin-top:12px">Default passcode: 1234</p>
+  </div>
+
+  <!-- dashboard -->
+  <div id="dash" hidden>
+    <div class="topbar">
+      <a class="brand" href="index.html"><span class="brandmark">Q</span><b>QR Pro</b></a>
+      <nav><a href="index.html">← View site</a></nav>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" data-tab="qrs">QR codes</button>
+      <button class="tab" data-tab="analytics">Analytics</button>
+      <button class="tab" data-tab="settings">Settings</button>
+    </div>
+
+    <!-- QR codes tab -->
+    <div id="tab-qrs">
+      <div class="note">
+        🖨️ <b>Print the QR image</b> (or the link under it). It points at a smart redirect page —
+        you can change the destination any time <i>after</i> printing. Scans are logged only when
+        <b>r.html</b> is hosted online (works on any static host).
+      </div>
+      <div class="card">
+        <h2>Create a QR code</h2>
+        <div class="field">
+          <label for="fName">Name</label>
+          <input id="fName" placeholder="e.g. Menu Card" maxlength="60">
+        </div>
+        <div class="field">
+          <label for="fUrl">Destination URL</label>
+          <input id="fUrl" placeholder="https://your-site.com/menu" inputmode="url">
+          <div class="hint">Must start with https:// — this is where scans land.</div>
+          <div class="err" id="fUrlErr"></div>
+        </div>
+        <div class="field">
+          <label for="fLabel">Label <span class="muted">(optional)</span></label>
+          <input id="fLabel" placeholder="e.g. Printed on table tents" maxlength="80">
+        </div>
+        <button class="btn" id="createBtn">Create QR code</button>
+      </div>
+      <div class="card">
+        <h2>Your QR codes</h2>
+        <div id="qrList"></div>
+        <div class="empty" id="qrListEmpty" hidden>
+          <div class="big">📷</div><p>Nothing here yet — create your first QR above.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Analytics tab -->
+    <div id="tab-analytics" hidden>
+      <div class="stats">
+        <div class="stat"><div class="v" id="stTotal">0</div><div class="k">Total scans</div></div>
+        <div class="stat"><div class="v" id="stToday">0</div><div class="k">Scans today</div></div>
+        <div class="stat"><div class="v" id="stQrs">0</div><div class="k">QR codes</div></div>
+      </div>
+      <div class="card">
+        <h2>Last 14 days</h2>
+        <div class="bars" id="chart"></div>
+      </div>
+      <div class="card">
+        <h2>Per QR code</h2>
+        <table class="data">
+          <thead><tr><th>QR</th><th>Destination</th><th>Scans</th></tr></thead>
+          <tbody id="perQr"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Settings tab -->
+    <div id="tab-settings" hidden>
+      <div class="card">
+        <h2>Change passcode</h2>
+        <div class="field">
+          <label for="sCur">Current passcode</label>
+          <input type="password" id="sCur" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="sNew">New passcode (min 4 characters)</label>
+          <input type="password" id="sNew" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="sNew2">Confirm new passcode</label>
+          <input type="password" id="sNew2" autocomplete="off">
+          <div class="err" id="sErr"></div>
+        </div>
+        <button class="btn" id="changePassBtn">Change passcode</button>
+      </div>
+      <div class="card">
+        <h2>Data</h2>
+        <p class="muted small" style="margin-bottom:12px">QR codes and scan logs live in this browser only. Clearing removes everything.</p>
+        <button class="btn danger" id="wipeBtn">Delete all QR codes &amp; scans</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- retarget modal -->
+<div class="modal-veil" id="retargetVeil" hidden>
+  <div class="modal">
+    <h3>Retarget QR</h3>
+    <p class="muted small" id="retargetName" style="margin-bottom:12px"></p>
+    <div class="field">
+      <label for="rUrl">New destination URL</label>
+      <input id="rUrl" inputmode="url">
+      <div class="err" id="rUrlErr"></div>
+    </div>
+    <div class="mrow">
+      <button class="btn ghost" id="rCancel">Cancel</button>
+      <button class="btn" id="rSave">Save</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
